@@ -1,0 +1,58 @@
+{% extends "baseTemplate.html" %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4">{{ dorams.title }}</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p>{{ dorams.description }}</p>
+                    <p>Продолжительность: {{ dorams.time }} мин.</p>
+                    <p>Жанр: {{ dorams.genre }}</p>
+                    <p>Автор: {{ dorams.author.username }}</p>
+                    {% if dorams.video_path %}
+                    <div class="text-center">
+                        <video controls width="80%">
+                            <source src="{{ dorams.video_path }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title">Написать комментарий</h4>
+                    <form method="post" action="{{ url_for('main.dorams_detail', dorams_id=dorams.id) }}">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.text.label}}
+                            {{ form.text(class="form-control") }}
+                        </div>
+                        <p></p>
+                        <div class="form-group text-center">
+                            {{ form.submit(class="btn btn-outline-secondary") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Комментарии</h4>
+                    {% for comment in comments %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <p>{{ comment.text }}</p>
+                            <p>Автор: {{ comment.user.username }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

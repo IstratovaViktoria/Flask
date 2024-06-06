@@ -1,0 +1,28 @@
+<link rel="icon" href="{{ url_for('static', filename="favicon.png") }}" type="image/x-icon">
+{% extends "baseTemplate.html" %}
+
+
+{% block content %}
+
+<div class="container my-5">
+    {% if current_user.is_authenticated %}
+        <h1 class="text-center mb-4">Добро пожаловать в Dorama, {{ current_user.username }}</h1>
+    {% else %}
+        <h1 class="text-center">Hello stranger</h1>
+    {% endif %}
+
+    <p class="lead text-center mb-5">Это приложение, где вы можете насладиться просмотром высококачественных дорам и оставить свои отзывы.</p>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Популярные дорамы</h5>
+                    <p class="card-text">Ознакомьтесь с нашей подборкой самых популярных дорам, которые стоит посмотреть.</p>
+                    <a href="{{ url_for('main.dorams') }}" class="btn btn-outline-secondary">Перейти в каталог</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

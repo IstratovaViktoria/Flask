@@ -1,0 +1,40 @@
+{% extends "baseTemplate.html" %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+
+{% block content %}
+<div class="container">
+    <div class="d-flex align-items-center justify-content-center min-vh-100">
+        <div class="grid gap-4">
+            <h1 class="g-1">Регистрация</h1>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    {{ form.email.label }}<br>
+                    {{ form.email(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.username.label }}<br>
+                    {{ form.username(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.password.label }}<br>
+                    {{ form.password(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.password2.label }}<br>
+                    {{ form.password2(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.role.label }}<br>
+                    {{ form.role(class="form-control") }}
+                </div>
+                <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-outline-secondary">Зарегистрироваться</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

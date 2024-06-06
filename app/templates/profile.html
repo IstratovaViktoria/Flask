@@ -1,0 +1,24 @@
+{% extends "baseTemplate.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Профиль</h1>
+                    <div class="form-group">
+                        <label for="username">Имя пользователя:</label>
+                        <input type="text" class="form-control" id="username" value="{{ current_user.username }}" disabled>
+                    </div>
+                    <p></p>
+                    <div class="form-group">
+                        <label for="email">Электронная почта:</label>
+                        <input type="email" class="form-control" id="email" value="{{ current_user.email }}" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

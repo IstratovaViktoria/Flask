@@ -1,0 +1,31 @@
+{% extends "baseTemplate.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4">Дорамы</h1>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for dorams in dorams %}
+        <div class="col">
+            <div class="card h-100">
+                {% if dorams.video_path %}
+                <video class="card-img-top" controls>
+                    <source src="{{ dorams.video_path }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                {% else %}
+                <div class="card-img-top placeholder-image">
+                    <i class="bi bi-film"></i>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ dorams.title }}</h5>
+                    <p class="card-text">{{ dorams.description }}</p>
+                    <p class="card-text"><small class="text-muted">Автор: {{ dorams.author.username }}</small></p>
+                    <a href="{{ url_for('main.dorams_detail', dorams_id=dorams.id) }}" class="btn btn-outline-secondary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
